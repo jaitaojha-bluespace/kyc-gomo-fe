@@ -1,0 +1,28 @@
+import type { BaseComponentsUiProps, CustomizationContextProps, HTMLElementWithProps, UiProps } from './common';
+import type { CustomElement, DeepRequired, ObjectValues, PalmInstructionCode } from '../../../ui-common/src/types';
+export * from './common';
+declare global {
+    namespace preact.JSX {
+        interface IntrinsicElements {
+            'x-dot-palm-capture-ui': CustomElement<{
+                props: PalmUiProps;
+            }>;
+        }
+    }
+    namespace React.JSX {
+        interface IntrinsicElements {
+            'x-dot-palm-capture-ui': CustomElement<{
+                props: PalmUiProps;
+            }>;
+        }
+    }
+}
+export declare const PalmPlaceholderIconValues: {
+    readonly LEFT: "left";
+    readonly RIGHT: "right";
+};
+export type PalmPlaceholderIcon = ObjectValues<typeof PalmPlaceholderIconValues>;
+export type PalmInstructions = Record<PalmInstructionCode, string>;
+export type PalmUiProps = UiProps<Partial<PalmInstructions>> & BaseComponentsUiProps<PalmPlaceholderIcon>;
+export type PalmProps = CustomizationContextProps<DeepRequired<PalmUiProps>>;
+export type HTMLPalmUiElement = HTMLElementWithProps<PalmUiProps>;

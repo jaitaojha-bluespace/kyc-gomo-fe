@@ -1,0 +1,108 @@
+/* Global Mobile-First Layout */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  padding: 10px;
+}
+
+/* Mobile Viewport Container - Fixed 375x812 */
+.mobile-viewport {
+  width: 375px;
+  height: 812px;
+  angle: 0deg;
+  position: relative;
+  background: #2C1D44;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive scaling for different devices */
+@media (max-width: 480px) {
+  .mobile-viewport {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    max-width: 375px;
+    max-height: 812px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-viewport {
+    width: 375px;
+    height: 812px;
+    transform: scale(0.9);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobile-viewport {
+    width: 375px;
+    height: 812px;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 1025px) {
+  .mobile-viewport {
+    width: 375px;
+    height: 812px;
+    transform: scale(1.1);
+  }
+}
+
+/* Container for camera and other components */
+.container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Custom scrollbar styling */
+.scrollable-content {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #374151;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: #374151;
+  border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+

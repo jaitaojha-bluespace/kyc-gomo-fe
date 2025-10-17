@@ -1,0 +1,61 @@
+import type { BaseCameraProps, CustomElement, DetectedFace, Resolution } from '../../../ui-common/src/types';
+export * from '../../../ui-common/src/types/common';
+export * from '../../../ui-common/src/types/face';
+export * from '../../../ui-common/src/error';
+declare global {
+    interface Window {
+        DOT_DEBUG_MODE?: boolean;
+    }
+    namespace preact.JSX {
+        interface IntrinsicElements {
+            'x-dot-face-auto-capture': CustomElement<{
+                cameraOptions: FaceCameraProps;
+            }>;
+        }
+    }
+    namespace React.JSX {
+        interface IntrinsicElements {
+            'x-dot-face-auto-capture': CustomElement<{
+                cameraOptions: FaceCameraProps;
+            }>;
+        }
+    }
+}
+export type HTMLFaceCaptureElement = HTMLElement & {
+    cameraOptions: FaceCameraProps;
+};
+export type FaceComponentData = {
+    detection: DetectedFace;
+    imageResolution: Resolution;
+};
+export type EyeThresholds = {
+    confidence: number;
+};
+export type MouthThresholds = {
+    confidence: number;
+    status: {
+        max: number;
+        min?: number;
+    } | {
+        max?: number;
+        min: number;
+    };
+};
+export type FaceThresholds = {
+    brightnessHighThreshold?: number;
+    brightnessLowThreshold?: number;
+    devicePitchAngleThreshold?: number;
+    faceConfidence?: number;
+    leftEye?: EyeThresholds;
+    maxFaceSizeRatio?: number;
+    minFaceSizeRatio?: number;
+    mouth?: MouthThresholds;
+    outOfBoundsThreshold?: number;
+    rightEye?: EyeThresholds;
+    sharpnessThreshold?: number;
+};
+export type PublicFaceThresholds = Omit<FaceThresholds, 'leftEye' | 'rightEye' | 'mouth'>;
+export type FaceCameraProps<T extends Record<string, unknown> = PublicFaceThresholds> = BaseCameraProps<FaceComponentData> & {
+    thresholds?: T;
+};
+export type FaceCallback = FaceCameraProps['onPhotoTaken'];

@@ -1,0 +1,12 @@
+services:
+  gomo-fe:
+    build: .
+    ports:
+      - "8080:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Mount the public directory for static assets
+      - ./public:/app/public:ro
+    restart: unless-stopped
+    container_name: gomo-frontend
